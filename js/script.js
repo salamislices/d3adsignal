@@ -1,4 +1,4 @@
-// Slight camera wobble for lo-fi feeling
+// === VHS SHAKE EFFECT ===
 let offset = 0;
 function vhsShake() {
   document.body.style.transform = `translateX(${Math.sin(offset) * 0.4}px)`;
@@ -7,7 +7,7 @@ function vhsShake() {
 }
 vhsShake();
 
-// Flicker sections on scroll
+// === SECTION FLICKER ON SCROLL ===
 window.addEventListener("scroll", () => {
   const sections = document.querySelectorAll(".section");
   const trigger = window.innerHeight * 0.8;
@@ -17,7 +17,7 @@ window.addEventListener("scroll", () => {
   });
 });
 
-// Subtle breathing effect for title
+// === TITLE BREATHING EFFECT ===
 anime({
   targets: '.glitch',
   scale: [1, 1.03],
