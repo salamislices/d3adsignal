@@ -1,142 +1,142 @@
-/* style.css — corrected and robust for D3AD Signal hero + sections */
-
-/* Basic Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
   height: 100%;
   font-family: 'VT323', monospace;
-  color: #e0e0e0;
-  background-color: #0a0a0a;
+  background: #080808;
+  color: #c4c4c4;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* CRT scanline overlay */
+.scanlines {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.02) 0px,
+    rgba(255,255,255,0.02) 1px,
+    transparent 2px,
+    transparent 3px
+  );
+  z-index: 999;
+  mix-blend-mode: overlay;
 }
 
 /* HERO */
 .hero {
   position: relative;
   height: 100vh;
+  background: url('https://i.imgur.com/zJcAqN1.jpeg') center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   overflow: hidden;
-  /* safer background properties split out */
-  background-image: url('https://static.vecteezy.com/system/resources/previews/021/751/144/non_2x/grunge-horror-background-for-halloween-dark-texture-free-photo.jpg');
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* optional; gives parallax-ish feel */
+  filter: contrast(110%) saturate(70%) brightness(90%);
 }
 
-/* dark overlay to ensure legibility */
 .overlay {
   position: absolute;
-  inset: 0;            /* shorthand for top:0; right:0; bottom:0; left:0; */
-  background: rgba(0, 0, 0, 0.6);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
   z-index: 1;
 }
 
-/* content sits above the overlay */
 .hero-content {
   z-index: 2;
   text-align: center;
-  color: #fff;
-  animation: fadeIn 2s ease-in;
-  padding: 0 1rem;
+  animation: flicker 4s infinite;
 }
 
-/* large glitch title */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  97% { opacity: 0.8; }
+  98% { opacity: 0.3; }
+  99% { opacity: 0.9; }
+}
+
+/* GLITCH TITLE */
 .glitch {
-  font-size: clamp(2.5rem, 7vw, 5rem); /* responsive */
-  line-height: 1;
+  font-size: 5rem;
   position: relative;
-  color: #ff0000;
+  color: #ff1a1a;
   text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff;
   animation: glitch 1s infinite;
-  letter-spacing: 2px;
 }
 
-/* glitch keyframes */
 @keyframes glitch {
-  0%   { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; transform: translateX(0); }
-  25%  { text-shadow: -2px 0 #00ffff, 2px 0 #ff00ff; transform: translateX(-1px); }
-  50%  { text-shadow: 3px -1px rgba(0,255,255,0.6), -3px 1px rgba(255,0,255,0.6); transform: translateX(1px); }
-  75%  { text-shadow: -1px 0 rgba(0,255,255,0.5), 1px 0 rgba(255,0,255,0.5); transform: translateX(-0.5px); }
-  100% { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; transform: translateX(0); }
+  0% { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; }
+  50% { text-shadow: -2px 0 #00ffff, 2px 0 #ff00ff; }
+  100% { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; }
 }
 
-/* scroll hint */
 .scroll-down {
   display: inline-block;
-  margin-top: 30px;
-  color: #fff;
-  font-size: 1.2rem;
+  margin-top: 25px;
+  color: #ff3333;
+  font-size: 1.1rem;
   text-decoration: none;
   animation: bounce 1.5s infinite;
-  z-index: 2;
 }
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
-  50%     { transform: translateY(10px); }
+  50% { transform: translateY(8px); }
 }
 
-/* sections */
+/* SECTIONS */
 .section {
-  padding: 100px 10%;
-  background: #0f0f0f;
-  border-top: 1px solid #222;
-  color: #cfcfcf;
+  padding: 80px 10%;
+  background: #0b0b0b;
+  border-top: 1px solid #1a1a1a;
 }
 
 .section:nth-of-type(even) {
-  background: #141414;
+  background: #0e0e0e;
 }
 
-/* headings & text */
 h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #ff0040;
+  font-size: 2.2rem;
+  color: #ff0033;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px #000;
 }
 
 p, a {
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   line-height: 1.6;
-  color: #c0c0c0;
+  color: #c8c8c8;
 }
 
-a {
-  color: #ff0033;
-  text-decoration: none;
-}
+a { color: #ff0050; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* game card */
+/* GAME CARDS */
 .game-card {
-  margin-top: 30px;
-  padding: 20px;
-  background: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 8px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-.game-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 24px rgba(255,0,64,0.06);
+  margin-top: 25px;
+  padding: 15px;
+  background: #111;
+  border: 1px solid #222;
+  transition: transform 0.15s ease;
+  box-shadow: inset 0 0 10px #000;
 }
 
-/* footer */
+.game-card:hover {
+  transform: scale(1.02);
+  background: #141414;
+}
+
+/* FOOTER */
 footer {
   text-align: center;
   padding: 20px;
   background: #000;
-  color: #555;
-  font-size: 0.95rem;
-}
-
-/* small fade-in */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
+  color: #444;
+  font-size: 1rem;
+  border-top: 1px solid #111;
 }
