@@ -64,7 +64,7 @@ html, body {
 .glitch {
   font-size: 5rem;
   position: relative;
-  color: #ff1a1a;
+  color: #862215;
   text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff;
   animation: glitch 1s infinite;
 }
