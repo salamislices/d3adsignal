@@ -235,3 +235,21 @@ footer {
   image-rendering: pixelated;
   z-index: 997;
 }
+.corner-star {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 80px; /* adjust size if needed */
+  height: auto;
+  z-index: 9999; /* makes sure it stays above everything */
+  pointer-events: none;
+}
+.cornerer-star {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 80px; /* adjust size if needed */
+  height: auto;
+  z-index: 9999; /* makes sure it stays above everything */
+  pointer-events: none;
+}
