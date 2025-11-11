@@ -1,86 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>D3AD Signal</title>
-  <meta name="description" content="D3AD Signal — A game production studio crafting retro PS1-style horror and movement-based games." />
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="styles.css" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
-  <!-- ScrollReveal API -->
-  <script src="https://unpkg.com/scrollreveal"></script>
-
-  <!-- Three.js for background (optional aesthetic layer) -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <body>
-  <canvas id="bg"></canvas>
-
-  <header class="site-header">
-    <div class="logo glitch" data-text="D3AD SIGNAL">D3AD SIGNAL</div>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#games">Games</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+  <header class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1 class="glitch" data-text="D3AD SIGNAL">D3AD SIGNAL</h1>
+      <p>RETRO HORROR // PS1 STYLE // MOVEMENT & DUNGEONS</p>
+      <a href="#about" class="scroll-down">▼ Scroll</a>
+    </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <h1 class="glitch" data-text="TRANSMISSION ACTIVE">TRANSMISSION ACTIVE</h1>
-      <p>Retro PS1-style horror and movement-based experiences.</p>
-      <p class="scroll-hint">▼ Scroll Down ▼</p>
-    </section>
+  <section id="about" class="section">
+    <h2>About</h2>
+    <p>
+      D3AD Signal is an independent game production studio creating retro PS1-style horror experiences.
+      We focus on movement-driven gameplay, dungeon exploration, and psychological horror inspired by the low-poly era.
+    </p>
+  </section>
 
-    <section id="about" class="content-section">
-      <h2>About D3AD Signal</h2>
+  <section id="games" class="section">
+    <h2>Games</h2>
+    <div class="game-card">
+      <h3>Project: ECHO VOID</h3>
       <p>
-        We are an independent game production studio crafting worlds that feel <span class="highlight">raw</span>, <span class="highlight">glitchy</span>, and <span class="highlight">alive</span>.
-        Inspired by the low-poly horror of the late 90s, our games explore tension, motion, and the uncanny.
+        A first-person horror platformer where echoes of your movement haunt you.
       </p>
-    </section>
+    </div>
+    <div class="game-card">
+      <h3>SUBLEVEL</h3>
+      <p>
+        Explore forgotten dungeons beneath a corrupted signal station.
+      </p>
+    </div>
+  </section>
 
-    <section id="games" class="content-section">
-      <h2>Our Worlds</h2>
-      <div class="game-list">
-        <article>
-          <h3>Signal // 01</h3>
-          <p>Descend through the ruins. The deeper you go, the more the world bends. A dungeon crawler built on fear and speed.</p>
-        </article>
-        <article>
-          <h3>Grave Frequency</h3>
-          <p>Track and evade ghosts through distorted frequencies. Every sound could be the last one you hear.</p>
-        </article>
-        <article>
-          <h3>Echo Core</h3>
-          <p>Multiplayer movement experiment — bounce, grapple, and collide through surreal arenas lost in static.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="contact" class="content-section">
-      <h2>Signal Us</h2>
-      <form id="contact-form">
-        <label>Email</label>
-        <input type="email" placeholder="you@domain.com" required />
-        <label>Message</label>
-        <textarea rows="4" placeholder="Type your message..." required></textarea>
-        <button type="submit">Send Signal</button>
-      </form>
-    </section>
-  </main>
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+    <p>Email: contact@d3adsignal.com</p>
+    <p>Twitter: <a href="https://twitter.com/" target="_blank">@D3ADSignal</a></p>
+  </section>
 
   <footer>
-    <p>© <span id="year"></span> D3AD Signal — All Rights Reserved</p>
+    <p>© 2025 D3AD Signal. All Rights Reserved.</p>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>
