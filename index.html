@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Site Foundation</title>
+  <meta name="description" content="A small, accessible website foundation (HTML, CSS, JS)" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Optional: favicon -->
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="logo" href="/">MySite</a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu">
+          <span class="sr-only">Toggle navigation</span>
+          ☰
+        </button>
+
+        <ul id="primary-menu" class="nav-list" data-open="false">
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button id="theme-toggle" aria-pressed="false" title="Toggle theme">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="site-main">
+    <div class="container">
+      <section class="hero">
+        <h1>Small Website Foundation</h1>
+        <p class="lead">A minimal, responsive, accessible starting point for web projects.</p>
+        <p>
+          Use the CSS variables to quickly change colors, spacing, type scale and more.
+        </p>
+        <p><a class="btn" href="#features">Get started</a></p>
+      </section>
+
+      <section id="features" class="grid-3">
+        <article>
+          <h2>Responsive</h2>
+          <p>Mobile-first layout that scales cleanly to larger screens.</p>
+        </article>
+
+        <article>
+          <h2>Accessible</h2>
+          <p>Keyboard focus styles, skip link, ARIA attributes for interactive controls.</p>
+        </article>
+
+        <article>
+          <h2>Light & Dark</h2>
+          <p>Theme toggle (JS-driven) using custom properties for color theming.</p>
+        </article>
+      </section>
+
+      <section id="about">
+        <h2>About</h2>
+        <p>Explain your project here. Keep content semantic — headings, paragraphs, and lists where appropriate.</p>
+
+        <form id="contact" class="form" action="#" method="post" novalidate>
+          <h3>Contact</h3>
+          <label>
+            Name
+            <input type="text" name="name" required />
+          </label>
+
+          <label>
+            Email
+            <input type="email" name="email" required />
+          </label>
+
+          <label>
+            Message
+            <textarea name="message" required rows="4"></textarea>
+          </label>
+
+          <div class="form-row">
+            <button class="btn" type="submit">Send</button>
+            <button class="btn btn--muted" type="reset">Reset</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> MySite · Built with a small foundation</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
