@@ -1,9 +1,7 @@
+/* style.css — corrected and robust for D3AD Signal hero + sections */
+
 /* Basic Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
   height: 100%;
@@ -13,44 +11,61 @@ html, body {
   scroll-behavior: smooth;
 }
 
+/* HERO */
 .hero {
   position: relative;
   height: 100vh;
-  background: url('https://static.vecteezy.com/system/resources/previews/021/751/144/non_2x/grunge-horror-background-for-halloween-dark-texture-free-photo.jpg') center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   overflow: hidden;
+  /* safer background properties split out */
+  background-image: url('https://static.vecteezy.com/system/resources/previews/021/751/144/non_2x/grunge-horror-background-for-halloween-dark-texture-free-photo.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* optional; gives parallax-ish feel */
 }
 
+/* dark overlay to ensure legibility */
 .overlay {
   position: absolute;
-  inset: 0;
+  inset: 0;            /* shorthand for top:0; right:0; bottom:0; left:0; */
   background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
 }
 
+/* content sits above the overlay */
 .hero-content {
-  z-index: 1;
+  z-index: 2;
   text-align: center;
   color: #fff;
   animation: fadeIn 2s ease-in;
+  padding: 0 1rem;
 }
 
+/* large glitch title */
 .glitch {
-  font-size: 5rem;
+  font-size: clamp(2.5rem, 7vw, 5rem); /* responsive */
+  line-height: 1;
   position: relative;
   color: #ff0000;
   text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff;
   animation: glitch 1s infinite;
+  letter-spacing: 2px;
 }
 
+/* glitch keyframes */
 @keyframes glitch {
-  0% { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; }
-  50% { text-shadow: -2px 0 #00ffff, 2px 0 #ff00ff; }
-  100% { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; }
+  0%   { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; transform: translateX(0); }
+  25%  { text-shadow: -2px 0 #00ffff, 2px 0 #ff00ff; transform: translateX(-1px); }
+  50%  { text-shadow: 3px -1px rgba(0,255,255,0.6), -3px 1px rgba(255,0,255,0.6); transform: translateX(1px); }
+  75%  { text-shadow: -1px 0 rgba(0,255,255,0.5), 1px 0 rgba(255,0,255,0.5); transform: translateX(-0.5px); }
+  100% { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; transform: translateX(0); }
 }
 
+/* scroll hint */
 .scroll-down {
   display: inline-block;
   margin-top: 30px;
@@ -58,31 +73,35 @@ html, body {
   font-size: 1.2rem;
   text-decoration: none;
   animation: bounce 1.5s infinite;
+  z-index: 2;
 }
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(10px); }
+  50%     { transform: translateY(10px); }
 }
 
+/* sections */
 .section {
-  padding: 100px 15%;
+  padding: 100px 10%;
   background: #0f0f0f;
   border-top: 1px solid #222;
+  color: #cfcfcf;
 }
 
-.section:nth-child(even) {
+.section:nth-of-type(even) {
   background: #141414;
 }
 
+/* headings & text */
 h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  margin-bottom: 1rem;
   color: #ff0040;
 }
 
 p, a {
-  font-size: 1.3rem;
+  font-size: 1.05rem;
   line-height: 1.6;
   color: #c0c0c0;
 }
@@ -91,33 +110,33 @@ a {
   color: #ff0033;
   text-decoration: none;
 }
+a:hover { text-decoration: underline; }
 
-a:hover {
-  text-decoration: underline;
-}
-
+/* game card */
 .game-card {
   margin-top: 30px;
   padding: 20px;
   background: #1a1a1a;
   border: 1px solid #333;
   border-radius: 8px;
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-
 .game-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(255,0,64,0.06);
 }
 
+/* footer */
 footer {
   text-align: center;
   padding: 20px;
   background: #000;
   color: #555;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
+/* small fade-in */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
