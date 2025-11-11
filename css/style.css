@@ -64,7 +64,7 @@ html, body {
 .glitch {
   font-size: 5rem;
   position: relative;
-  color: #862215;
+  color: #ffffff;
   text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff;
   animation: glitch 1s infinite;
 }
@@ -78,7 +78,7 @@ html, body {
 .scroll-down {
   display: inline-block;
   margin-top: 25px;
-  color: #ff3333;
+  color: #ffffff;
   font-size: 1.1rem;
   text-decoration: none;
   animation: bounce 1.5s infinite;
@@ -102,7 +102,7 @@ html, body {
 
 h2 {
   font-size: 2.2rem;
-  color: #ff0033;
+  color: #ffffff;
   margin-bottom: 20px;
   text-shadow: 1px 1px 2px #000;
 }
@@ -113,7 +113,7 @@ p, a {
   color: #c8c8c8;
 }
 
-a { color: #ff0050; text-decoration: none; }
+a { color: #ffffff; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* GAME CARDS */
