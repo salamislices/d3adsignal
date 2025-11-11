@@ -1,0 +1,189 @@
+/* === D3AD SIGNAL === */
+/* PS1 / CRT horror vibe */
+
+:root {
+  --bg: #050505;
+  --text: #e0e0e0;
+  --accent: #ff003c;
+  --muted: #666;
+  --font-main: 'Share Tech Mono', monospace;
+  --font-title: 'Press Start 2P', monospace;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+}
+
+/* CRT scanlines */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.03),
+    rgba(255,255,255,0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: 9999;
+  mix-blend-mode: overlay;
+}
+
+/* Header */
+.site-header {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  z-index: 10;
+  border-bottom: 1px solid #111;
+}
+
+.logo {
+  font-family: var(--font-title);
+  color: var(--accent);
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* Glitch effect */
+.glitch {
+  position: relative;
+  color: var(--accent);
+  text-shadow:
+    1px 0px #00fff9,
+    -1px 0px #ff00c8;
+  animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.6;
+  }
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+  padding: 0 2rem;
+}
+
+.hero h1 {
+  font-family: var(--font-title);
+  color: var(--accent);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  color: var(--muted);
+}
+
+.scroll-hint {
+  margin-top: 2rem;
+  color: var(--accent);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Sections */
+.content-section {
+  min-height: 100vh;
+  padding: 8rem 2rem 4rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.content-section h2 {
+  color: var(--accent);
+  text-transform: uppercase;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.content-section p {
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.highlight {
+  color: var(--accent);
+}
+
+.game-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.game-list article {
+  background: #0d0d0d;
+  padding: 1.5rem;
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.game-list article:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* Contact Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input, textarea {
+  background: #000;
+  border: 1px solid #333;
+  color: var(--text);
+  padding: 0.75rem;
+  border-radius: 4p
+}

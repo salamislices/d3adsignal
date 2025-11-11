@@ -3,104 +3,82 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Site Foundation</title>
-  <meta name="description" content="A small, accessible website foundation (HTML, CSS, JS)" />
+  <title>D3AD Signal</title>
+  <meta name="description" content="D3AD Signal — A game production studio crafting retro PS1-style horror and movement-based games." />
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Optional: favicon -->
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <!-- ScrollReveal API -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <!-- Three.js for background (optional aesthetic layer) -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <canvas id="bg"></canvas>
 
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <a class="logo" href="/">MySite</a>
-
-      <nav class="site-nav" aria-label="Primary">
-        <button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu">
-          <span class="sr-only">Toggle navigation</span>
-          ☰
-        </button>
-
-        <ul id="primary-menu" class="nav-list" data-open="false">
-          <li><a href="#" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-actions">
-        <button id="theme-toggle" aria-pressed="false" title="Toggle theme">🌙</button>
-      </div>
-    </div>
+  <header class="site-header">
+    <div class="logo glitch" data-text="D3AD SIGNAL">D3AD SIGNAL</div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#games">Games</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main id="main" class="site-main">
-    <div class="container">
-      <section class="hero">
-        <h1>Small Website Foundation</h1>
-        <p class="lead">A minimal, responsive, accessible starting point for web projects.</p>
-        <p>
-          Use the CSS variables to quickly change colors, spacing, type scale and more.
-        </p>
-        <p><a class="btn" href="#features">Get started</a></p>
-      </section>
+  <main>
+    <section class="hero">
+      <h1 class="glitch" data-text="TRANSMISSION ACTIVE">TRANSMISSION ACTIVE</h1>
+      <p>Retro PS1-style horror and movement-based experiences.</p>
+      <p class="scroll-hint">▼ Scroll Down ▼</p>
+    </section>
 
-      <section id="features" class="grid-3">
+    <section id="about" class="content-section">
+      <h2>About D3AD Signal</h2>
+      <p>
+        We are an independent game production studio crafting worlds that feel <span class="highlight">raw</span>, <span class="highlight">glitchy</span>, and <span class="highlight">alive</span>.
+        Inspired by the low-poly horror of the late 90s, our games explore tension, motion, and the uncanny.
+      </p>
+    </section>
+
+    <section id="games" class="content-section">
+      <h2>Our Worlds</h2>
+      <div class="game-list">
         <article>
-          <h2>Responsive</h2>
-          <p>Mobile-first layout that scales cleanly to larger screens.</p>
+          <h3>Signal // 01</h3>
+          <p>Descend through the ruins. The deeper you go, the more the world bends. A dungeon crawler built on fear and speed.</p>
         </article>
-
         <article>
-          <h2>Accessible</h2>
-          <p>Keyboard focus styles, skip link, ARIA attributes for interactive controls.</p>
+          <h3>Grave Frequency</h3>
+          <p>Track and evade ghosts through distorted frequencies. Every sound could be the last one you hear.</p>
         </article>
-
         <article>
-          <h2>Light & Dark</h2>
-          <p>Theme toggle (JS-driven) using custom properties for color theming.</p>
+          <h3>Echo Core</h3>
+          <p>Multiplayer movement experiment — bounce, grapple, and collide through surreal arenas lost in static.</p>
         </article>
-      </section>
+      </div>
+    </section>
 
-      <section id="about">
-        <h2>About</h2>
-        <p>Explain your project here. Keep content semantic — headings, paragraphs, and lists where appropriate.</p>
-
-        <form id="contact" class="form" action="#" method="post" novalidate>
-          <h3>Contact</h3>
-          <label>
-            Name
-            <input type="text" name="name" required />
-          </label>
-
-          <label>
-            Email
-            <input type="email" name="email" required />
-          </label>
-
-          <label>
-            Message
-            <textarea name="message" required rows="4"></textarea>
-          </label>
-
-          <div class="form-row">
-            <button class="btn" type="submit">Send</button>
-            <button class="btn btn--muted" type="reset">Reset</button>
-          </div>
-        </form>
-      </section>
-    </div>
+    <section id="contact" class="content-section">
+      <h2>Signal Us</h2>
+      <form id="contact-form">
+        <label>Email</label>
+        <input type="email" placeholder="you@domain.com" required />
+        <label>Message</label>
+        <textarea rows="4" placeholder="Type your message..." required></textarea>
+        <button type="submit">Send Signal</button>
+      </form>
+    </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>© <span id="year"></span> MySite · Built with a small foundation</p>
-    </div>
+  <footer>
+    <p>© <span id="year"></span> D3AD Signal — All Rights Reserved</p>
   </footer>
 
   <script src="script.js" defer></script>
