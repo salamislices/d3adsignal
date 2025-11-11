@@ -160,3 +160,16 @@ footer {
   font-size: 1rem;
   border-top: 1px solid #111;
 }
+.image-row {
+  display: flex;           /* makes the children line up in a row */
+  justify-content: center; /* center horizontally */
+  flex-wrap: wrap;         /* wrap to next line if screen is small */
+  gap: 10px;               /* space between images */
+  margin-top: 20px;        /* some space from text */
+}
+
+.image-row img {
+  max-width: 2000px;        /* optional: control size */
+  height: auto;
+  border: 0px solid #222;  /* optional: adds retro outline */
+}
