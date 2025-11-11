@@ -68,7 +68,7 @@ html, body {
 /* ===== GLITCH TITLE ===== */
 .glitch {
   font-family: 'Sixtyfour', sans-serif;
-  font-size: 5rem;
+  font-size: 4rem;
   position: relative;
   color: #ffffff;
   text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff;
