@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -8,12 +9,34 @@
 html, body {
   height: 100%;
   font-family: 'VT323', monospace;
-  background: #080808;
   color: #c4c4c4;
   scroll-behavior: smooth;
   overflow-x: hidden;
   text-transform: uppercase;
   letter-spacing: 1px;
+
+  /* PS1-style background: checker + radial + low contrast */
+  background: 
+    repeating-conic-gradient(
+      from 45deg,
+      #0a0a0a 0deg 90deg,
+      #0b0b0b 90deg 180deg
+    ),
+    radial-gradient(circle at center, #101010 0%, #050505 100%);
+  background-size: 8px 8px, 100% 100%;
+  image-rendering: pixelated;
+}
+
+/* Add a faint pixel/noise texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url('https://i.imgur.com/1o0zA2y.png'); /* subtle pixel noise */
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* CRT scanline overlay */
@@ -43,6 +66,7 @@ html, body {
   flex-direction: column;
   overflow: hidden;
   filter: contrast(110%) saturate(70%) brightness(90%);
+  border-bottom: 1px solid #111;
 }
 
 .overlay {
@@ -74,6 +98,7 @@ html, body {
   text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff;
   animation: glitch 0.8s infinite steps(2, end);
   letter-spacing: 1px;
+  filter: blur(0.3px);
 }
 
 @keyframes glitch {
@@ -84,6 +109,7 @@ html, body {
   100% { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; transform: translate(0,0); }
 }
 
+/* ===== SCROLL DOWN ===== */
 .scroll-down {
   display: inline-block;
   margin-top: 25px;
@@ -98,15 +124,17 @@ html, body {
   50% { transform: translateY(8px); }
 }
 
-/* ===== SECTIONS ===== */
+/* ===== SECTION BASE ===== */
 .section {
   padding: 80px 10%;
-  background: #0b0b0b;
-  border-top: 0px solid #000000;
+  background: rgba(10, 10, 10, 0.95);
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+  box-shadow: inset 0 0 20px #000;
 }
 
 .section:nth-of-type(even) {
-  background: #0e0e0e;
+  background: rgba(12, 12, 12, 0.95);
 }
 
 h2 {
@@ -127,12 +155,10 @@ p, a {
 a {
   color: #ffffff;
   text-decoration: none;
-  text-align: center;
 }
 
 a:hover {
   text-decoration: underline;
-  text-align: center;
 }
 
 /* ===== GAME CARDS ===== */
@@ -140,15 +166,35 @@ a:hover {
   margin-top: 25px;
   padding: 30px;
   background: #111;
-  border: 1px solid #ffffff;
-  transition: transform 0.15s ease;
+  border: 1px dashed #888;
+  transition: transform 0.15s ease, background 0.3s;
   box-shadow: inset 0 0 10px #000;
   text-align: center;
+  font-size: 1rem;
+  filter: contrast(120%);
 }
 
 .game-card:hover {
   transform: scale(1.02);
-  background: #141414;
+  background: #161616;
+  border-color: #fff;
+}
+
+/* ===== IMAGE ROW ===== */
+.image-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.image-row img {
+  max-width: 100%;
+  height: auto;
+  border: 1px dashed #888;
+  filter: contrast(110%) saturate(80%);
+  image-rendering: pixelated;
 }
 
 /* ===== FOOTER ===== */
@@ -156,20 +202,36 @@ footer {
   text-align: center;
   padding: 20px;
   background: #000;
-  color: #444;
+  color: #555;
   font-size: 1rem;
   border-top: 1px solid #111;
 }
-.image-row {
-  display: flex;           /* makes the children line up in a row */
-  justify-content: center; /* center horizontally */
-  flex-wrap: wrap;         /* wrap to next line if screen is small */
-  gap: 10px;               /* space between images */
-  margin-top: 20px;        /* some space from text */
+.ps1-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.02) 0%,
+    rgba(0,0,0,0.05) 50%,
+    rgba(255,255,255,0.02) 100%
+  );
+  mix-blend-mode: soft-light;
+  z-index: 998;
 }
-
-.image-row img {
-  max-width: 2000px;        /* optional: control size */
-  height: auto;
-  border: 0px solid #222;  /* optional: adds retro outline */
+.pixel-gradient {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.015) 0px,
+      rgba(0,0,0,0.015) 2px,
+      rgba(255,255,255,0.01) 4px
+    );
+  mix-blend-mode: overlay;
+  opacity: 0.4;
+  image-rendering: pixelated;
+  z-index: 997;
 }
