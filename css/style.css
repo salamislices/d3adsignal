@@ -102,7 +102,7 @@ html, body {
 .section {
   padding: 80px 10%;
   background: #0b0b0b;
-  border-top: 1px solid #1a1a1a;
+  border-top: 0px solid #000000;
 }
 
 .section:nth-of-type(even) {
@@ -112,33 +112,38 @@ html, body {
 h2 {
   font-size: 2.2rem;
   color: #ffffff;
+  text-align: center;
   margin-bottom: 20px;
-  text-shadow: 1px 1px 2px #000;
+  text-shadow: 2px 1px 2px #000;
 }
 
 p, a {
   font-size: 1.2rem;
   line-height: 1.6;
   color: #c8c8c8;
+  text-align: center;
 }
 
 a {
   color: #ffffff;
   text-decoration: none;
+  text-align: center;
 }
 
 a:hover {
   text-decoration: underline;
+  text-align: center;
 }
 
 /* ===== GAME CARDS ===== */
 .game-card {
   margin-top: 25px;
-  padding: 15px;
+  padding: 30px;
   background: #111;
-  border: 1px solid #222;
+  border: 1px solid #ffffff;
   transition: transform 0.15s ease;
   box-shadow: inset 0 0 10px #000;
+  text-align: center;
 }
 
 .game-card:hover {
