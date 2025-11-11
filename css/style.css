@@ -1,5 +1,10 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+/* ===== BASE ===== */
 html, body {
   height: 100%;
   font-family: 'VT323', monospace;
@@ -27,7 +32,7 @@ html, body {
   mix-blend-mode: overlay;
 }
 
-/* HERO */
+/* ===== HERO SECTION ===== */
 .hero {
   position: relative;
   height: 100vh;
@@ -60,19 +65,23 @@ html, body {
   99% { opacity: 0.9; }
 }
 
-/* GLITCH TITLE */
+/* ===== GLITCH TITLE ===== */
 .glitch {
+  font-family: 'Sixtyfour', sans-serif;
   font-size: 5rem;
   position: relative;
   color: #ffffff;
   text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff;
-  animation: glitch 1s infinite;
+  animation: glitch 0.8s infinite steps(2, end);
+  letter-spacing: 1px;
 }
 
 @keyframes glitch {
-  0% { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; }
-  50% { text-shadow: -2px 0 #00ffff, 2px 0 #ff00ff; }
-  100% { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; }
+  0% { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; transform: translate(0,0); }
+  20% { text-shadow: -2px 0 #00ffff, 2px 0 #ff00ff; transform: translate(-2px, 2px); }
+  40% { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; transform: translate(2px, -2px); }
+  60% { text-shadow: -2px 0 #00ffff, 2px 0 #ff00ff; transform: translate(1px, -1px); }
+  100% { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; transform: translate(0,0); }
 }
 
 .scroll-down {
@@ -89,7 +98,7 @@ html, body {
   50% { transform: translateY(8px); }
 }
 
-/* SECTIONS */
+/* ===== SECTIONS ===== */
 .section {
   padding: 80px 10%;
   background: #0b0b0b;
@@ -113,10 +122,16 @@ p, a {
   color: #c8c8c8;
 }
 
-a { color: #ffffff; text-decoration: none; }
-a:hover { text-decoration: underline; }
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
 
-/* GAME CARDS */
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== GAME CARDS ===== */
 .game-card {
   margin-top: 25px;
   padding: 15px;
@@ -131,7 +146,7 @@ a:hover { text-decoration: underline; }
   background: #141414;
 }
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 footer {
   text-align: center;
   padding: 20px;
