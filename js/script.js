@@ -1,4 +1,3 @@
-// === VHS SHAKE EFFECT ===
 let offset = 0;
 function vhsShake() {
   document.body.style.transform = `translateX(${Math.sin(offset) * 0.4}px)`;
@@ -6,8 +5,6 @@ function vhsShake() {
   requestAnimationFrame(vhsShake);
 }
 vhsShake();
-
-// === SECTION FLICKER ON SCROLL ===
 window.addEventListener("scroll", () => {
   const sections = document.querySelectorAll(".section");
   const trigger = window.innerHeight * 0.8;
@@ -16,8 +13,6 @@ window.addEventListener("scroll", () => {
     if (top < trigger) section.classList.add("visible");
   });
 });
-
-// === TITLE BREATHING EFFECT ===
 anime({
   targets: '.glitch',
   scale: [1, 1.03],
