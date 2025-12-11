@@ -12,15 +12,71 @@
 
   <section class="section">
     <h1>ARTWORK</h1>
-    <div class="image-grid">
-      <!-- Add your artwork here -->
-      <img src="YOUR-IMAGE-LINK-1">
-      <img src="YOUR-IMAGE-LINK-2">
-      <img src="YOUR-IMAGE-LINK-3">
+    <p><a href="index.html">← Back to Home</a></p>
+
+    <div class="gallery">
+      <img src="images/image (1).jpg">
+      <img src="images/image (2).jpg">
+      <img src="images/image (3).jpg">
+      <img src="images/image (4).jpg">
+      <img src="images/image (5).jpg">
+      <img src="images/image (6).jpg">
+
+      <img src="images/image (7).png">
+      <img src="images/image (8).png">
+      <img src="images/image (9).png">
+      <img src="images/image (11).png">
+      <img src="images/image (12).png">
+      <img src="images/image (13).png">
+      <img src="images/image (14).png">
+      <img src="images/image (15).png">
+      <img src="images/image (16).png">
+      <img src="images/image (17).png">
+      <img src="images/image (18).png">
+      <img src="images/image (19).png">
+      <img src="images/image (20).png">
+      <img src="images/image (21).png">
+      <img src="images/image (22).png">
+      <img src="images/image (23).png">
+      <img src="images/image (24).png">
+      <img src="images/image (25).png">
+      <img src="images/image (26).png">
+      <img src="images/image (27).png">
+      <img src="images/image (28).png">
+
+      <img src="images/image (29).jpg">
     </div>
+
+    <!-- Fullscreen Viewer -->
+    <div id="fullscreen-viewer" class="fullscreen-viewer">
+      <span class="close-btn" onclick="closeFullscreen()">×</span>
+      <img id="fullscreen-img">
+    </div>
+
   </section>
-      
-  <p><a href="index.html">← Back to Home</a></p>
+
+  <script>
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        document.getElementById('fullscreen-img').src = img.src;
+        document.getElementById('fullscreen-viewer').style.display = 'flex';
+      });
+    });
+
+    function closeFullscreen() {
+      document.getElementById('fullscreen-viewer').style.display = 'none';
+    }
+
+    // click outside image to close
+    document.getElementById('fullscreen-viewer').addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeFullscreen();
+    });
+
+    // esc closes
+    document.addEventListener('keydown', e => {
+      if (e.key === "Escape") closeFullscreen();
+    });
+  </script>
 
 </body>
 </html>
