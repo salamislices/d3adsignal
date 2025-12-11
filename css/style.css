@@ -288,3 +288,10 @@ footer {
   max-width: 900px;
   border-radius: 0 !important; /* Removes rounded corners */
 }
+.fullscreen-viewer img {
+  width: 90%;
+  height: auto;              /* Do NOT force a height */
+  max-height: 90vh;          /* Prevents it from going off-screen vertically */
+  object-fit: contain;       /* Keeps original aspect ratio */
+  border-radius: 0 !important;
+}
