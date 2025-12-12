@@ -45,4 +45,3 @@ document.getElementById('fullscreen-viewer').addEventListener('click', e => {
 document.addEventListener('keydown', e => {
   if (e.key === "Escape") closeFullscreen();
 });
-
