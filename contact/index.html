@@ -10,16 +10,12 @@
         body {
             background-color: #000000;
             
-            /* --- TRUE SVGA DITHER MATRIX FADE --- */
-            /* This SVG builds 4 distinct mathematical steps of retro pixel-density shading */
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="600" viewBox="0 0 16 600" preserveAspectRatio="none"><defs><pattern id="light" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1" height="1" fill="%235a0000"/></pattern><pattern id="medium" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="%235a0000"/><rect x="2" y="2" width="2" height="2" fill="%235a0000"/></pattern><pattern id="heavy" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" fill="%235a0000"/><rect width="2" height="2" fill="%23000000"/><rect x="2" y="2" width="2" height="2" fill="%23000000"/></pattern></defs><rect width="16" height="150" fill="url(%23light)"/><rect y="150" width="16" height="150" fill="url(%23medium)"/><rect y="300" width="16" height="150" fill="url(%23heavy)"/><rect y="450" width="16" height="150" fill="%235a0000"/></svg>');
             
-            /* Repeats horizontally across screen, stretches perfectly to fill window height */
             background-repeat: repeat-x;
             background-size: 32px 100vh; 
             background-attachment: fixed;
             
-            /* Keeps the generated SVG pattern pixels razor sharp with no anti-aliasing blur */
             image-rendering: pixelated;
             image-rendering: crisp-edges;
 
@@ -231,7 +227,6 @@
                 <p style="margin-top: 15px; margin-bottom: 0;">Or email me here:</p>
             </div>
             
-            <!-- Form Handler (Replace with your custom Formspree URL) -->
             <form action="PASTE_YOUR_FORMSPREE_URL_HERE" method="POST">
                 <div class="form-group">
                     <label for="name">NAME</label>
