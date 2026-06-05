@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+        body {
+            background-color: #000000;
+            
+            /* --- TRUE SVGA DITHER MATRIX FADE --- */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="600" viewBox="0 0 16 600" preserveAspectRatio="none"><defs><pattern id="light" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1" height="1" fill="%235a0000"/></pattern><pattern id="medium" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="%235a0000"/><rect x="2" y="2" width="2" height="2" fill="%235a0000"/></pattern><pattern id="heavy" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" fill="%235a0000"/><rect width="2" height="2" fill="%23000000"/><rect x="2" y="2" width="2" height="2" fill="%23000000"/></pattern></defs><rect width="16" height="150" fill="url(%23light)"/><rect y="150" width="16" height="150" fill="url(%23medium)"/><rect y="300" width="16" height="150" fill="url(%23heavy)"/><rect y="450" width="16" height="150" fill="%235a0000"/></svg>');
+            
+            /* Repeats horizontally, stretches seamlessly to browser window height */
+            background-repeat: repeat-x;
+            background-size: 32px 100vh; 
+            background-attachment: fixed;
+            
+            /* Enforces razor-sharp retro edges instead of modern blurred scaling */
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+
+            font-size: 1.2rem;
+            color: #ffffff;
+            font-family: 'VT323', monospace;
+            letter-spacing: 1px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            max-width: 1400px; 
+            gap: 60px; 
+            align-items: center;
+            justify-content: center;
+            background-color: #000000;
+            padding: 40px 80px;
+            box-sizing: border-box;
+        }
+
+        .text-content {
+            max-width: 550px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-family: 'VT323', monospace;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        /* Updated back button container */
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            transition: transform 0.1s ease, opacity 0.2s ease;
+        }
+
+        /* Keeps the image layout crisp and sized properly */
+        .back-btn img {
+            display: block;
+            max-width: 100px; /* Adjust this value to make the button bigger or smaller */
+            height: auto;
+            image-rendering: pixelated; /* Keeps the dithered GIF perfectly sharp */
+        }
+
+        /* Retro button hover effect */
+        .back-btn:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        .gif-container img {
+            max-width: 1000px;
+            width: 110%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 1100px) { 
+            body {
+                align-items: center;
+            }
+            .container {
+                flex-direction: column-reverse; 
+                text-align: center;
+                padding: 40px 20px;
+                min-height: 100vh;
+            }
+            .gif-container img {
+                max-width: 450px; 
+                margin: 0 auto 20px auto;
+            }
+            /* Centers the GIF button when layout stacks on mobile */
+            .back-btn {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="text-content">
+            <h2>ABOUT ME</h2>
+            
+            <p>My name is Daniel “D3ad Signal” and I am a game
+            developer and digital artist that is bringing new and interesting
+            ideas with the visual and technical aesthetics of older games. My
+            work is heavily influenced by the surreal and dreamy stories and
+            style of the PlayStation 1 and 2 eras. I grew up playing games from
+            that time, and I am most inspired by the atmosphere of games like
+            Shadow of the Colossus. I aim to use these older styles in my own
+            work to create a sense of nostalgia for the players. My work
+            involves programming with 2D and 3D designs to create immersive
+            worlds. As of now, I mainly use the Godot engine along with
+            GDScript to implement my projects and works. One aspect of game
+            development that I am most interested in is level design. The
+            program I use the most is Trenchbroom. With it, I am able to
+            achieve the specific geometry and feel of Quake engine style
+            games. Along with this, I also design 2D assets like UI and Sprites
+            in Procreate that I make sure fits the aesthetics of the
+            environments I create. My overall goal in the game field is to use
+            modern tools to bring my strange ideas to life with the specific look
+            and feel of the hardware I enjoyed as a kid.</p>
+            
+            <p>This site serves as a digital archive of my work.</p>
+            
+            <a href="../" class="back-btn">
+                <img src="../images/dithered-video.gif" alt="Back to Home">
+            </a>
+        </div>
+
+        <div class="gif-container">
+            <img src="../images/sinning.gif" alt="Spinning graphic">
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artwork – D3AD Signal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+        body {
+            background-color: #000000;
+            
+            /* --- TRUE SVGA DITHER MATRIX FADE --- */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="600" viewBox="0 0 16 600" preserveAspectRatio="none"><defs><pattern id="light" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1" height="1" fill="%235a0000"/></pattern><pattern id="medium" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="%235a0000"/><rect x="2" y="2" width="2" height="2" fill="%235a0000"/></pattern><pattern id="heavy" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" fill="%235a0000"/><rect width="2" height="2" fill="%23000000"/><rect x="2" y="2" width="2" height="2" fill="%23000000"/></pattern></defs><rect width="16" height="150" fill="url(%23light)"/><rect y="150" width="16" height="150" fill="url(%23medium)"/><rect y="300" width="16" height="150" fill="url(%23heavy)"/><rect y="450" width="16" height="150" fill="%235a0000"/></svg>');
+            
+            /* Repeats horizontally, stretches perfectly to fill window height */
+            background-repeat: repeat-x;
+            background-size: 32px 100vh; 
+            background-attachment: fixed;
+            
+            /* Enforces sharp retro pixel grids instead of blurred gradients */
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+
+            font-size: 1.2rem;
+            color: #ffffff;
+            font-family: 'VT323', monospace;
+            letter-spacing: 1px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 1400px; 
+            background-color: #000000;
+            padding: 40px 80px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-family: 'VT323', monospace;
+            margin-top: 0;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        /* Updated back button container */
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: transform 0.1s ease, opacity 0.2s ease;
+            width: fit-content;
+        }
+
+        /* Keeps the image layout crisp and sized properly */
+        .back-btn img {
+            display: block;
+            max-width: 100px; /* Adjust this value to make the button bigger or smaller */
+            height: auto;
+            image-rendering: pixelated; /* Keeps the dithered GIF perfectly sharp */
+        }
+
+        /* Retro button hover effect */
+        .back-btn:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            cursor: pointer;
+            border: 2px solid #111111;
+            transition: border-color 0.2s ease;
+        }
+
+        .gallery img:hover {
+            border-color: #ba1b1b;
+        }
+
+        .fullscreen-viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fullscreen-viewer img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border: 2px solid #ba1b1b;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #ffffff;
+            font-size: 3rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .close-btn:hover {
+            color: #ba1b1b;
+        }
+
+        @media (max-width: 1100px) { 
+            body {
+                align-items: center;
+            }
+            .container {
+                padding: 40px 20px;
+                min-height: 100vh;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+            /* Centers the GIF button when layout stacks on mobile */
+            .back-btn {
+                margin: 0 auto 30px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Gallery</h1>
+        
+        <a href="../" class="back-btn">
+            <img src="../images/dithered-video.gif" alt="Back to Home">
+        </a>
+
+        <div class="gallery">
+            <img src="../images/oreo8.PNG" alt="Artwork">
+            <img src="../images/oreo11.jpg" alt="Artwork">
+            <img src="../images/sword.jpg" alt="Artwork">
+            <img src="../images/oreo9.PNG" alt="Artwork">
+            <img src="../images/IMG_1907.png" alt="Artwork">
+            <img src="../images/oreo1.PNG" alt="Artwork">
+            <img src="../images/oreo2.PNG" alt="Artwork">
+            <img src="../images/oreo3.PNG" alt="Artwork">
+            <img src="../images/DOMARIBG.PNG" alt="Artwork">
+            <img src="../images/oreo4.PNG" alt="Artwork">
+            <img src="../images/oreo5.PNG" alt="Artwork">
+            <img src="../images/oreo6.PNG" alt="Artwork">
+            <img src="../images/oreo7.PNG" alt="Artwork">
+            <img src="../images/oreo10.PNG" alt="Artwork">
+            <img src="../images/oreo12.jpg" alt="Artwork">
+            <img src="../images/subway.png" alt="Artwork">
+            <img src="../images/sun.png" alt="Artwork">
+            <img src="../images/thumbnail.png" alt="Artwork">
+            <img src="../images/angel.jpg" alt="Artwork">
+            <img src="../images/thumb.png" alt="Artwork">
+            <img src="../images/image1.jpg" alt="Artwork">
+            <img src="../images/image2.jpg" alt="Artwork">
+            <img src="../images/image3.jpg" alt="Artwork">
+            <img src="../images/image4.jpg" alt="Artwork">
+            <img src="../images/image5.jpg" alt="Artwork">
+            <img src="../images/image6.jpg" alt="Artwork">
+            <img src="../images/image7.png" alt="Artwork">
+            <img src="../images/image8.png" alt="Artwork">
+            <img src="../images/image9.png" alt="Artwork">
+            <img src="../images/image11.png" alt="Artwork">
+            <img src="../images/image12.png" alt="Artwork">
+            <img src="../images/image13.png" alt="Artwork">
+            <img src="../images/image14.png" alt="Artwork">
+            <img src="../images/image15.png" alt="Artwork">
+            <img src="../images/image16.png" alt="Artwork">
+            <img src="../images/image17.png" alt="Artwork">
+            <img src="../images/image18.png" alt="Artwork">
+            <img src="../images/image19.png" alt="Artwork">
+            <img src="../images/image20.png" alt="Artwork">
+            <img src="../images/image21.png" alt="Artwork">
+            <img src="../images/image22.png" alt="Artwork">
+            <img src="../images/image23.png" alt="Artwork">
+            <img src="../images/image24.png" alt="Artwork">
+            <img src="../images/image25.png" alt="Artwork">
+            <img src="../images/image26.png" alt="Artwork">
+            <img src="../images/image27.png" alt="Artwork">
+            <img src="../images/image28.png" alt="Artwork">
+            <img src="../images/image29.jpg" alt="Artwork">
+        </div>
+
+        <div id="fullscreen-viewer" class="fullscreen-viewer">
+            <span class="close-btn" onclick="closeFullscreen()">×</span>
+            <img id="fullscreen-img" alt="Fullscreen preview">
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.gallery img').forEach(img => {
+            img.addEventListener('click', () => {
+                document.getElementById('fullscreen-img').src = img.src;
+                document.getElementById('fullscreen-viewer').style.display = 'flex';
+            });
+        });
+
+        function closeFullscreen() {
+            document.getElementById('fullscreen-viewer').style.display = 'none';
+        }
+
+        document.getElementById('fullscreen-viewer').addEventListener('click', e => {
+            if (e.target === e.currentTarget) closeFullscreen();
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === "Escape") closeFullscreen();
+        });
+    </script>
+
+</body>
+</html>
