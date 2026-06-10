@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artwork – D3AD Signal</title>
+    <title>(X_X) Gallery</title>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
         body {
             background-color: #000000;
-            
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="600" viewBox="0 0 16 600" preserveAspectRatio="none"><defs><pattern id="light" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1" height="1" fill="%235a0000"/></pattern><pattern id="medium" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="%235a0000"/><rect x="2" y="2" width="2" height="2" fill="%235a0000"/></pattern><pattern id="heavy" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" fill="%235a0000"/><rect width="2" height="2" fill="%23000000"/><rect x="2" y="2" width="2" height="2" fill="%23000000"/></pattern></defs><rect width="16" height="150" fill="url(%23light)"/><rect y="150" width="16" height="150" fill="url(%23medium)"/><rect y="300" width="16" height="150" fill="url(%23heavy)"/><rect y="450" width="16" height="150" fill="%235a0000"/></svg>');
-            
+
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="600" viewBox="0 0 16 600" preserveAspectRatio="none"><defs><pattern id="light" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1" height="1" fill="%233a5f4a"/></pattern><pattern id="medium" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="%233b6f8a"/><rect x="2" y="2" width="2" height="2" fill="%234a3f2b"/></pattern><pattern id="heavy" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" fill="%23101413"/><rect width="2" height="2" fill="%23090c0b"/><rect x="2" y="2" width="2" height="2" fill="%230b0f0e"/></pattern></defs><rect width="16" height="150" fill="url(%23light)"/><rect y="150" width="16" height="150" fill="url(%23medium)"/><rect y="300" width="16" height="150" fill="url(%23heavy)"/><rect y="450" width="16" height="150" fill="%23090f0e"/></svg>');
+
             background-repeat: repeat-x;
-            background-size: 32px 100vh; 
+            background-size: 32px 100vh;
             background-attachment: fixed;
-            
+
             image-rendering: pixelated;
             image-rendering: crisp-edges;
 
             font-size: 1.2rem;
-            color: #ffffff;
+            color: #d7e2db;
             font-family: 'VT323', monospace;
             letter-spacing: 1px;
             margin: 0;
@@ -31,36 +32,73 @@
             min-height: 100vh;
         }
 
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: .7;
+
+            background:
+                repeating-linear-gradient(
+                    to bottom,
+                    rgba(120,140,130,0.06) 0px,
+                    rgba(120,140,130,0.06) 1px,
+                    transparent 1px,
+                    transparent 3px
+                ),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+
+            mix-blend-mode: overlay;
+        }
+
         .container {
             display: flex;
             flex-direction: column;
             width: 100%;
-            max-width: 1400px; 
-            background-color: #000000;
+            max-width: 1400px;
+            background: linear-gradient(145deg, #000000, #000000, #14100c);
+            border-left: 2px solid #2f5f56;
+            border-right: 2px solid #3d4f3f;
             padding: 40px 80px;
             box-sizing: border-box;
+            box-shadow:
+                0 0 20px rgba(0, 0, 0, 0.15),
+                0 0 40px rgba(90, 70, 40, 0.12);
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-family: 'VT323', monospace;
-            margin-top: 0;
-            margin-bottom: 20px;
+            color: #8fb3a6;
+            margin-top: 0px;
+            margin-bottom: 10px;
             letter-spacing: 2px;
+
+            text-shadow:
+                0 0 6px rgba(80, 140, 120, 0.4),
+                0 0 14px rgba(90, 70, 40, 0.3);
         }
 
-        /* Updated back button container */
+        p {
+            color: #a7b8af;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
         .back-btn {
             display: inline-block;
             text-decoration: none;
             margin-bottom: 30px;
             transition: transform 0.1s ease, opacity 0.2s ease;
             width: fit-content;
+            margin-left: auto;
         }
 
         .back-btn img {
             display: block;
-            max-width: 100px; 
+            max-width: 100px;
             height: auto;
             image-rendering: pixelated;
         }
@@ -83,12 +121,25 @@
             object-fit: cover;
             display: block;
             cursor: pointer;
-            border: 2px solid #111111;
-            transition: border-color 0.2s ease;
+            border: 2px solid #2a2f2d;
+            background-color: #000000;
+
+            transition:
+                border-color 0.2s ease,
+                transform 0.15s ease,
+                box-shadow 0.2s ease;
+
+            image-rendering: pixelated;
         }
 
         .gallery img:hover {
-            border-color: #ba1b1b;
+            border-color: #7fa89a;
+
+            transform: scale(1.02);
+
+            box-shadow:
+                0 0 10px rgba(0, 0, 0, 0.35),
+                0 0 20px rgba(120, 90, 60, 0.2);
         }
 
         .fullscreen-viewer {
@@ -98,137 +149,161 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
+            background-color: rgba(5, 10, 9, 0.95);
             z-index: 100;
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(3px);
         }
 
         .fullscreen-viewer img {
             max-width: 90%;
             max-height: 90%;
             object-fit: contain;
-            border: 2px solid #ba1b1b;
+            display: block;
+
+            border: 2px solid #7fa89a;
+
+            box-shadow:
+                0 0 20px rgba(90, 140, 120, 0.35),
+                0 0 40px rgba(120, 90, 60, 0.2);
         }
 
         .close-btn {
             position: absolute;
             top: 20px;
             right: 30px;
-            color: #ffffff;
+            color: #c9d6cf;
             font-size: 3rem;
             cursor: pointer;
-            user-select: none;
+            transition: color 0.2s ease;
         }
 
         .close-btn:hover {
-            color: #ba1b1b;
+            color: #7fa89a;
         }
 
-        @media (max-width: 1100px) { 
+        @media (max-width: 1100px) {
+
             body {
                 align-items: center;
             }
+
             .container {
                 padding: 40px 20px;
                 min-height: 100vh;
             }
+
             .gallery {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 gap: 15px;
             }
+
             .back-btn {
-                margin: 0 auto 30px auto;
+                margin: 0 0 30px auto;
             }
         }
     </style>
 </head>
+
 <body>
 
-    <div class="container">
-        <h1>Gallery</h1>
-        
-        <a href="../" class="back-btn">
-            <img src="../images/dithered-video.gif" alt="Back to Home">
-        </a>
+<div class="container">
 
-        <div class="gallery">
-            <img src="../images/oreo8.PNG" alt="Artwork">
-            <img src="../images/oreo11.jpg" alt="Artwork">
-            <img src="../images/sword.jpg" alt="Artwork">
-            <img src="../images/oreo9.PNG" alt="Artwork">
-            <img src="../images/IMG_1907.png" alt="Artwork">
-            <img src="../images/oreo1.PNG" alt="Artwork">
-            <img src="../images/oreo2.PNG" alt="Artwork">
-            <img src="../images/oreo3.PNG" alt="Artwork">
-            <img src="../images/DOMARIBG.PNG" alt="Artwork">
-            <img src="../images/oreo4.PNG" alt="Artwork">
-            <img src="../images/oreo5.PNG" alt="Artwork">
-            <img src="../images/oreo6.PNG" alt="Artwork">
-            <img src="../images/oreo7.PNG" alt="Artwork">
-            <img src="../images/oreo10.PNG" alt="Artwork">
-            <img src="../images/oreo12.jpg" alt="Artwork">
-            <img src="../images/subway.png" alt="Artwork">
-            <img src="../images/sun.png" alt="Artwork">
-            <img src="../images/thumbnail.png" alt="Artwork">
-            <img src="../images/angel.jpg" alt="Artwork">
-            <img src="../images/thumb.png" alt="Artwork">
-            <img src="../images/image1.jpg" alt="Artwork">
-            <img src="../images/image2.jpg" alt="Artwork">
-            <img src="../images/image3.jpg" alt="Artwork">
-            <img src="../images/image4.jpg" alt="Artwork">
-            <img src="../images/image5.jpg" alt="Artwork">
-            <img src="../images/image6.jpg" alt="Artwork">
-            <img src="../images/image7.png" alt="Artwork">
-            <img src="../images/image8.png" alt="Artwork">
-            <img src="../images/image9.png" alt="Artwork">
-            <img src="../images/image11.png" alt="Artwork">
-            <img src="../images/image12.png" alt="Artwork">
-            <img src="../images/image13.png" alt="Artwork">
-            <img src="../images/image14.png" alt="Artwork">
-            <img src="../images/image15.png" alt="Artwork">
-            <img src="../images/image16.png" alt="Artwork">
-            <img src="../images/image17.png" alt="Artwork">
-            <img src="../images/image18.png" alt="Artwork">
-            <img src="../images/image19.png" alt="Artwork">
-            <img src="../images/image20.png" alt="Artwork">
-            <img src="../images/image21.png" alt="Artwork">
-            <img src="../images/image22.png" alt="Artwork">
-            <img src="../images/image23.png" alt="Artwork">
-            <img src="../images/image24.png" alt="Artwork">
-            <img src="../images/image25.png" alt="Artwork">
-            <img src="../images/image26.png" alt="Artwork">
-            <img src="../images/image27.png" alt="Artwork">
-            <img src="../images/image28.png" alt="Artwork">
-            <img src="../images/image29.jpg" alt="Artwork">
-        </div>
+<a href="../" class="back-btn">
+<img src="../images/dithered-video.gif" alt="Back to Home">
+</a>
 
-        <div id="fullscreen-viewer" class="fullscreen-viewer">
-            <span class="close-btn" onclick="closeFullscreen()">×</span>
-            <img id="fullscreen-img" alt="Fullscreen preview">
-        </div>
-    </div>
+<h1>Gallery</h1>
 
-    <script>
-        document.querySelectorAll('.gallery img').forEach(img => {
-            img.addEventListener('click', () => {
-                document.getElementById('fullscreen-img').src = img.src;
-                document.getElementById('fullscreen-viewer').style.display = 'flex';
-            });
-        });
+<p>*Filters added to prevent screenshotting most of my art is also on my instagram*</p>
 
-        function closeFullscreen() {
-            document.getElementById('fullscreen-viewer').style.display = 'none';
-        }
+<div class="gallery">
 
-        document.getElementById('fullscreen-viewer').addEventListener('click', e => {
-            if (e.target === e.currentTarget) closeFullscreen();
-        });
+<img src="../images/oreo8.PNG">
+<img src="../images/oreo11.jpg">
+<img src="../images/la.PNG">
+<img src="../images/so.jpg">
+<img src="../images/sword.jpg">
+<img src="../images/oreo9.PNG">
+<img src="../images/IMG_1907.png">
+<img src="../images/oreo1.PNG">
+<img src="../images/oreo2.PNG">
+<img src="../images/oreo3.PNG">
+<img src="../images/DOMARIBG.PNG">
+<img src="../images/oreo4.PNG">
+<img src="../images/oreo5.PNG">
+<img src="../images/oreo6.PNG">
+<img src="../images/oreo7.PNG">
+<img src="../images/oreo10.PNG">
+<img src="../images/oreo12.jpg">
+<img src="../images/subway.png">
+<img src="../images/sun.png">
+<img src="../images/thumbnail.png">
+<img src="../images/angel.jpg">
+<img src="../images/thumb.png">
+<img src="../images/image1.jpg">
+<img src="../images/image2.jpg">
+<img src="../images/image3.jpg">
+<img src="../images/image4.jpg">
+<img src="../images/image5.jpg">
+<img src="../images/image6.jpg">
+<img src="../images/image7.png">
+<img src="../images/image8.png">
+<img src="../images/image9.png">
+<img src="../images/image11.png">
+<img src="../images/image12.png">
+<img src="../images/image13.png">
+<img src="../images/image14.png">
+<img src="../images/image15.png">
+<img src="../images/image16.png">
+<img src="../images/image17.png">
+<img src="../images/image18.png">
+<img src="../images/image19.png">
+<img src="../images/image20.png">
+<img src="../images/image21.png">
+<img src="../images/image22.png">
+<img src="../images/image23.png">
+<img src="../images/image24.png">
+<img src="../images/image25.png">
+<img src="../images/image26.png">
+<img src="../images/image27.png">
+<img src="../images/image28.png">
+<img src="../images/image29.jpg">
 
-        document.addEventListener('keydown', e => {
-            if (e.key === "Escape") closeFullscreen();
-        });
-    </script>
+</div>
+
+<div id="fullscreen-viewer" class="fullscreen-viewer">
+<span class="close-btn" onclick="closeFullscreen()">×</span>
+<img id="fullscreen-img">
+</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.gallery img').forEach(img => {
+    img.addEventListener('click', () => {
+        document.getElementById('fullscreen-img').src = img.src;
+        document.getElementById('fullscreen-viewer').style.display = 'flex';
+    });
+});
+
+function closeFullscreen() {
+    document.getElementById('fullscreen-viewer').style.display = 'none';
+}
+
+document.getElementById('fullscreen-viewer').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeFullscreen();
+});
+
+document.addEventListener('keydown', e => {
+    if (e.key === "Escape") closeFullscreen();
+});
+
+window.addEventListener('contextmenu', function (e) {
+    if (e.target.tagName === 'IMG') e.preventDefault();
+});
+</script>
 
 </body>
 </html>

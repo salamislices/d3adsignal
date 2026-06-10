@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact – D3AD Signal</title>
+    <title>(X_X) Contact</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
         body {
-            background-color: #000000;
-            
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="600" viewBox="0 0 16 600" preserveAspectRatio="none"><defs><pattern id="light" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1" height="1" fill="%235a0000"/></pattern><pattern id="medium" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="%235a0000"/><rect x="2" y="2" width="2" height="2" fill="%235a0000"/></pattern><pattern id="heavy" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" fill="%235a0000"/><rect width="2" height="2" fill="%23000000"/><rect x="2" y="2" width="2" height="2" fill="%23000000"/></pattern></defs><rect width="16" height="150" fill="url(%23light)"/><rect y="150" width="16" height="150" fill="url(%23medium)"/><rect y="300" width="16" height="150" fill="url(%23heavy)"/><rect y="450" width="16" height="150" fill="%235a0000"/></svg>');
+            background-color: #08080c;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="600" viewBox="0 0 16 600" preserveAspectRatio="none"><defs><pattern id="light" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1" height="1" fill="%2322222b"/></pattern><pattern id="medium" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="%231a1126"/><rect x="2" y="2" width="2" height="2" fill="%2322222b"/></pattern><pattern id="heavy" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" fill="%230f061a"/><rect width="2" height="2" fill="%23000000"/><rect x="2" y="2" width="2" height="2" fill="%23000000"/></pattern></defs><rect width="16" height="150" fill="url(%23light)"/><rect y="150" width="16" height="150" fill="url(%23medium)"/><rect y="300" width="16" height="150" fill="url(%23heavy)"/><rect y="450" width="16" height="150" fill="%2305010a"/></svg>');
             
             background-repeat: repeat-x;
             background-size: 32px 100vh; 
@@ -26,52 +25,103 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: stretch;
+            flex-direction: column;
+            align-items: center;
             min-height: 100vh;
         }
 
-        .container {
-            display: flex;
-            flex-direction: row;
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: .7; 
+            background: 
+                repeating-linear-gradient(
+                    to bottom,
+                    rgba(255,255,255,0.04) 0px,
+                    rgba(255,255,255,0.04) 1px,
+                    transparent 1px,
+                    transparent 3px
+                ),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            mix-blend-mode: overlay; 
+        }
+
+        .store-wrapper {
             width: 100%;
-            max-width: 1400px; 
-            gap: 60px; 
-            align-items: center;
-            justify-content: center;
-            background-color: #000000;
-            padding: 40px 80px;
+            max-width: 1200px;
+            padding: 40px 20px;
             box-sizing: border-box;
         }
 
-        .text-content {
-            width: 100%;
-            max-width: 550px;
+        .archive-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #16161d, #000000, #000000);
+            padding: 15px 30px;
+            margin-bottom: 40px;
+            border-bottom: 4px solid #2e2e3a;
         }
 
-        h2 {
-            font-size: 2.5rem;
-            font-family: 'VT323', monospace;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
+        .archive-title {
+            font-size: 3rem;
+            letter-spacing: 3px;
+            margin: 0;
+            color: #ffffff;
+            text-shadow:
+                0 0 4px #aaaaaa,
+                0 0 10px #333344,
+                2px 2px 0px #000000;
+        }
+
+        .contact-content-box {
+            display: flex;
+            flex-direction: row;
+            background: linear-gradient(145deg, #0a0a0f, #020205, #111116);
+            border: 2px solid #3a3a4c;
+            box-shadow:
+                0 0 12px rgba(255, 255, 255, 0.05),
+                0 0 20px rgba(100, 100, 120, 0.1);
+            padding: 40px;
+            gap: 50px;
+            box-sizing: border-box;
+        }
+
+        .text-column {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .visual-column {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         p {
             margin-bottom: 20px;
-            line-height: 1.2;
+            line-height: 1.3;
+            color: #cccccc;
         }
 
         .find-me-hub {
             margin-bottom: 30px;
-            border-bottom: 2px dashed #5a0000;
-            padding-bottom: 20px;
+            border-bottom: 2px dashed #3a3a4c;
+            padding-bottom: 25px;
         }
 
         .hub-title {
             font-size: 1.4rem;
-            color: #ba1b1b;
-            margin-bottom: 10px;
+            color: #ffffff;
+            margin-bottom: 12px;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
         }
 
         .social-links {
@@ -81,7 +131,7 @@
         }
 
         .social-link {
-            color: #ffffff;
+            color: #8a8a9e;
             text-decoration: none;
             font-size: 1.4rem;
             width: fit-content;
@@ -89,34 +139,35 @@
         }
 
         .social-link:hover {
-            color: #ba1b1b;
+            color: #ffffff;
             transform: translateX(5px);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
         }
 
         form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 20px;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
         }
 
         label {
             font-size: 1.4rem;
-            color: #ba1b1b;
+            color: #8a8a9e;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         input[type="text"],
         input[type="email"],
         textarea {
             background-color: #000000;
-            border: 2px solid #5a0000;
+            border: 2px solid #2e2e3a;
             color: #ffffff;
             font-family: 'VT323', monospace;
             font-size: 1.3rem;
@@ -124,40 +175,42 @@
             box-sizing: border-box;
             outline: none;
             letter-spacing: 1px;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
         }
 
         input[type="text"]:focus,
         input[type="email"]:focus,
         textarea:focus {
             border-color: #ffffff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
         }
 
         textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 140px;
         }
 
         .submit-btn {
-            background-color: #ba1b1b;
-            color: #ffffff;
+            background-color: #ffffff;
+            color: #000000;
             border: none;
             font-family: 'VT323', monospace;
             font-size: 1.6rem;
-            padding: 8px 20px;
+            padding: 8px 24px;
             cursor: pointer;
             width: fit-content;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: transform 0.1s ease, background-color 0.2s ease;
+            font-weight: bold;
+            transition: transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .submit-btn:hover {
-            background-color: #ffffff;
-            color: #000000;
+            background-color: #cccccc;
             transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
         }
 
-        /* --- Back Button Styling --- */
         .back-btn {
             display: inline-block;
             text-decoration: none;
@@ -176,58 +229,71 @@
             transform: scale(1.05);
         }
 
-        .gif-container img {
-            max-width: 1000px;
-            width: 110%;
-            height: auto;
-            display: block;
+        .gif-container {
+            width: 100%;
+            max-width: 450px;
+            border: 2px solid #2e2e3a;
+            background-color: #000000;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
         }
 
-        @media (max-width: 1100px) { 
-            body {
-                align-items: center;
-            }
-            .container {
+        .gif-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            image-rendering: pixelated;
+        }
+
+        @media (max-width: 950px) { 
+            .contact-content-box {
                 flex-direction: column-reverse; 
-                text-align: left;
-                padding: 40px 20px;
-                min-height: 100vh;
+                padding: 25px;
+                gap: 30px;
             }
-            .gif-container img {
-                max-width: 450px; 
-                margin: 0 auto 20px auto;
+            .archive-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
             .back-btn {
-                display: block;
                 margin: 0 auto;
-                width: max-content;
+            }
+            .gif-container {
+                max-width: 100%; 
             }
             .submit-btn {
                 width: 100%;
-            }
-            .social-links {
-                align-items: flex-start;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="text-content">
-            <h2>CONTACT ME</h2>
+<div class="store-wrapper">
 
+    <header class="archive-header">
+        <h1 class="archive-title">*CONTACT*</h1>
+
+        <a href="../" class="back-btn">
+            <img src="../images/dithered-video.gif" alt="Back to Home">
+        </a>
+    </header>
+
+    <main class="contact-content-box">
+        
+        <div class="text-column">
             <div class="find-me-hub">
-                <div class="hub-title">FIND ME HERE AT SOCIALS:</div>
+                <div class="hub-title">FIND ME HERE!!</div>
                 <div class="social-links">
                     <a href="https://instagram.com/d3dsignal" target="_blank" class="social-link">[ INSTAGRAM ]</a> 
                     <a href="https://x.com/d3dsignal" target="_blank" class="social-link">[ TWITTER ]</a>
                 </div>
                 
-                <p style="margin-top: 15px; margin-bottom: 0;">Or email me here:</p>
+                <p style="margin-top: 20px; margin-bottom: 0; color: #ffffff;">For inquiries: d3adsignal0@gmail.com</p>
             </div>
             
-            <form action="PASTE_YOUR_FORMSPREE_URL_HERE" method="POST">
+            <form action="https://formspree.io/f/xdavklwo" method="POST">
                 <div class="form-group">
                     <label for="name">NAME</label>
                     <input type="text" id="name" name="name" required autocomplete="off">
@@ -245,16 +311,17 @@
 
                 <button type="submit" class="submit-btn">[ SEND ]</button>
             </form>
-            
-            <a href="../" class="back-btn">
-                <img src="../images/dithered-video.gif" alt="Back to Home">
-            </a>
         </div>
 
-        <div class="gif-container">
-            <img src="../images/sinning.gif" alt="Spinning graphic">
+        <div class="visual-column">
+            <div class="gif-container">
+                <img src="../images/sinning.gif" alt="Spinning graphic">
+            </div>
         </div>
-    </div>
+
+    </main>
+
+</div>
 
 </body>
 </html>

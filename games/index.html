@@ -1,40 +1,480 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
-    <style>
-        body {
-            position: fixed;
-            background-color: #000000;
-            font-size: 1.1rem;
-            color: #ffffff;
-            font-family: monospace;
-            padding: 20px;
-            max-width: 600px;
-        }
-        h2 {
-            font-size: 1;
-            font-family: monospace;
-            margin-bottom: 20px;
-        }
-        p {
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-        .back-btn {
-            color: #ba1b1b;
-            text-decoration: none;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(X_X) Games</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body {
+    background-color: #05000a;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="600" viewBox="0 0 16 600" preserveAspectRatio="none"><defs><pattern id="light" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1" height="1" fill="%23330066"/></pattern><pattern id="medium" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="%23004488"/><rect x="2" y="2" width="2" height="2" fill="%23660033"/></pattern><pattern id="heavy" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" fill="%23001144"/><rect width="2" height="2" fill="%23000000"/><rect x="2" y="2" width="2" height="2" fill="%23000000"/></pattern></defs><rect width="16" height="150" fill="url(%23light)"/><rect y="150" width="16" height="150" fill="url(%23medium)"/><rect y="300" width="16" height="150" fill="url(%23heavy)"/><rect y="450" width="16" height="150" fill="%23001122"/></svg>');
+    background-repeat: repeat-x;
+    background-size: 32px 100vh;
+    background-attachment: fixed;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    font-size: 1.2rem;
+    color: #ffffff;
+    font-family: 'VT323', monospace;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: .8;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.05) 0px,
+            rgba(255,255,255,0.05) 1px,
+            transparent 1px,
+            transparent 3px
+        ),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+}
+
+.store-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.archive-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #1a002d, #000000, #000000);
+    padding: 15px 30px;
+    margin-bottom: 40px;
+    border-bottom: 4px solid #1e0f38;
+}
+
+.archive-title {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    margin: 0;
+    color: #bb66ff;
+    text-shadow:
+        0 0 4px #ff0066,
+        0 0 10px #6600ff,
+        2px 2px 0px #000000;
+}
+
+.back-btn {
+    display: inline-block;
+    text-decoration: none;
+    transition: transform 0.1s ease, opacity 0.2s ease;
+}
+
+.back-btn img {
+    display: block;
+    max-width: 100px;
+    height: auto;
+    image-rendering: pixelated;
+}
+
+.back-btn:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.game-listing {
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(145deg, #0b0014, #000814, #140008);
+    border: 2px solid #5522aa;
+    box-shadow:
+        0 0 12px rgba(153, 0, 255, 0.25),
+        0 0 20px rgba(0, 100, 255, 0.15);
+    margin-bottom: 60px;
+    padding: 30px;
+    gap: 40px;
+    box-sizing: border-box;
+}
+
+.media-column {
+    flex: 1.4;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.main-preview-viewport {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 2px solid #8844ff;
+    background-color: #120022;
+    overflow: hidden;
+    box-shadow:
+        0 0 15px rgba(170, 0, 255, 0.3),
+        inset 0 0 20px rgba(0, 100, 255, 0.2);
+}
+
+.main-preview-viewport img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    image-rendering: pixelated;
+}
+
+.thumbnail-strip {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+}
+
+.thumb-box {
+    flex: 1;
+    aspect-ratio: 16 / 9;
+    border: 2px solid #332244;
+    background-color: #111111;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.thumb-box:hover {
+    border-color: #bb66ff;
+    transform: scale(1.02);
+    box-shadow:
+        0 0 10px rgba(170, 0, 255, 0.5),
+        0 0 16px rgba(0, 100, 255, 0.3);
+}
+
+.thumb-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    image-rendering: pixelated;
+}
+
+.info-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.game-header-meta {
+    margin-bottom: 20px;
+}
+
+.game-title {
+    font-size: 2.4rem;
+    color: #ffffff;
+    margin-bottom: 5px;
+    line-height: 1;
+    text-shadow:
+        0 0 6px rgba(255, 0, 120, 0.5),
+        0 0 12px rgba(100, 0, 255, 0.4);
+}
+
+.release-date {
+    font-size: 1.1rem;
+    color: #b088ff;
+    text-transform: uppercase;
+}
+
+.game-description {
+    font-size: 1.2rem;
+    line-height: 1.3;
+    color: #cccccc;
+    margin-bottom: 20px;
+}
+
+.store-footer-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px dashed #442266;
+    padding-top: 20px;
+}
+
+.engine-tag {
+    background: linear-gradient(90deg, #1a0033, #001a44);
+    border: 1px solid #8844ff;
+    color: #d0a0ff;
+    padding: 4px 12px;
+    font-size: 1.1rem;
+    box-shadow:
+        0 0 10px rgba(150, 0, 255, 0.25);
+}
+
+@media (max-width: 950px) {
+    .game-listing {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .archive-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .back-btn {
+        margin: 0 auto;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <h2>GAMES</h2>
+<div class="store-wrapper">
 
-    
-    <a href="../" class="back-btn">[ HOME ]</a>
+<header class="archive-header">
+    <h1 class="archive-title">GAMES</h1>
+
+    <a href="../" class="back-btn">
+        <img src="../images/dithered-video.gif">
+    </a>
+</header>
+
+<section class="game-listing">
+
+<div class="media-column">
+
+<div class="main-preview-viewport">
+<img id="main-preview-spirit" src="../images/main_spirithunter1998_image.png">
+</div>
+
+<div class="thumbnail-strip">
+
+<div class="thumb-box">
+<img src="../images/2nd_spirithunter1998_image.png"
+onclick="document.getElementById('main-preview-spirit').src=this.src">
+</div>
+
+<div class="thumb-box">
+<img src="../images/3rd_spirithunter1998_image.png"
+onclick="document.getElementById('main-preview-spirit').src=this.src">
+</div>
+
+<div class="thumb-box">
+<img src="../images/4th_spirithunter1998_image.png"
+onclick="document.getElementById('main-preview-spirit').src=this.src">
+</div>
+
+</div>
+</div>
+
+<div class="info-column">
+
+<div>
+<div class="game-header-meta">
+<h2 class="game-title">Spirit Hunter 1998</h2>
+
+<div class="release-date">
+Lead Technical Director, Lead Level Designer, Co-Creative Director
+</div>
+</div>
+
+<p class="game-description">
+I collaborated with a group of people to create a Godot engine
+game called, “Spirit Hunter Ͽ998”, I handled the majority of the technical
+and a lot of the visuals in the game. I designed many of the ЀD assets
+using Procreate, where I focused on creating a consistent “retro” visual
+identity through things like the UI, title screens, and a functional
+minimap. On the programming side, I wrote the GDScript necessary to
+integrate these elements along with all other coding needed for
+gameplay. This involved coding the core logic for things like enemy
+behavior and world interactions such as combat and dialogue systems.
+For instance, I implemented a navigation system for the enemy’s to find
+the shortest distance to the player on the map and take that path. To add
+to the retro aesthetic we were going for, I built all the levels using
+Trenchbroom so the game could have an authentic quake-engine feel. I
+also managed the implementation of all sound effects to ensure the
+atmosphere was as immersive as possible. The main thing I wanted out
+of this project was to create a game with a unique visual and technical
+identity. At the same time, It was my first time creating a fully
+fleshed-out game using Godot and Trenchbroom, so this piece is a
+testament to how I’ve grown as a game developer. In working on this
+project, I was inspired by the retro aesthetic of old PS1/PS2 and Nintendo
+64 games. I loved playing games of that era growing up, and they’re what
+inspired me to make games today. Bringing that same visual style into
+this project was a great way to tap into my own nostalgia while making
+it. This also aligns with what I want the audience to get out of the game,
+too. I wanted them to have that same feeling of nostalgia that inspired
+me in the first place.
+</p>
+</div>
+
+<div class="store-footer-actions">
+<span class="engine-tag">Godot</span>
+</div>
+
+</div>
+</section>
+
+<section class="game-listing">
+
+<div class="media-column">
+
+<div class="main-preview-viewport">
+<img id="main-preview-domari" src="../images/main_domari_image.png">
+</div>
+
+<div class="thumbnail-strip">
+
+<div class="thumb-box">
+<img src="../images/2nd_domari_image.png"
+onclick="document.getElementById('main-preview-domari').src=this.src">
+</div>
+
+<div class="thumb-box">
+<img src="../images/3rd_domari_image.png"
+onclick="document.getElementById('main-preview-domari').src=this.src">
+</div>
+
+<div class="thumb-box">
+<img src="../images/4th_domari_image.png"
+onclick="document.getElementById('main-preview-domari').src=this.src">
+</div>
+
+</div>
+</div>
+
+<div class="info-column">
+
+<div>
+<div class="game-header-meta">
+<h2 class="game-title">DOMARI - (Ongoing)</h2>
+
+<div class="release-date">
+Sole Game Dev
+</div>
+</div>
+
+<p class="game-description">
+This is a solo game project called “DÓMARI”. I am developing every aspect of this first-person game, from the level design in Trenchbroom to the 3D assets in Blender and textures in Procreate. All the UI design is hand-drawn to reinforce the retro visual identity I love. While I have established the aesthetics and overall feel, I am currently working to expand the narrative and more complex coding aspects. Much like my work on Spirit Hunter, I am pushing older PSX-style graphics into a surreal and eerie horror setting. This is a passion project that I intend to refine and improve on for a long time. This is a project I have wanted to develop for a while and I view it as a breakthrough piece for my portfolio. Because I have full creative and technical control, I am curating the gameplay, level design, and creative direction to be the kind of game I would have been obsessed with and had a poster of in my room as a teenager. I want the experience to be eerie and weird so that the audience wants to know more about the story and my process as a designer. Although the narrative is still being finalized, the goal is to create a surreal experience where the audience feels immersed in the aesthetics and wrapped up in nostalgia of an old horror game.    
+</p>
+</div>
+
+<div class="store-footer-actions">
+<span class="engine-tag">Godot</span>
+</div>
+
+</div>
+</section>
+
+<section class="game-listing">
+
+<div class="media-column">
+
+<div class="main-preview-viewport">
+<img id="main-preview-astro" src="../images/main_AstroKitty_image.png">
+</div>
+
+<div class="thumbnail-strip">
+
+<div class="thumb-box">
+<img src="../images/2nd_astroKitty_image.png"
+onclick="document.getElementById('main-preview-astro').src=this.src">
+</div>
+
+<div class="thumb-box">
+<img src="../images/3rd_astrokitty_image.png"
+onclick="document.getElementById('main-preview-astro').src=this.src">
+</div>
+
+</div>
+</div>
+
+<div class="info-column">
+
+<div>
+<div class="game-header-meta">
+<h2 class="game-title">Astro Kitty</h2>
+
+<div class="release-date">
+Sole Game Dev
+</div>
+</div>
+
+<p class="game-description">
+I developed this game in GameMaker using GML to implement all the core logic. It is a platformer where the player must collect gems while avoiding enemies that increase in speed as the levels progress. I created the majority of the assets and incorporated various images to push a sporadic, surreal aesthetic. This involved using GameMaker’s specific framework to ensure the mechanics remained fast paced and the game remained replayable. This was a passion project where I wanted to focus on pushing strange and overstimulating visuals. I was inspired by the aesthetics of games like Cruelty Squad and wanted to create something with captivating, sporadic visuals. This was also a significant learning experience as it was my first time working with GameMaker. It allowed me to get familiar with platformer engines and expand my general development skills. My goal was to provide the audience with an addictive, fun, lighthearted game that tests their reactions and mechanics.
+</p>
+</div>
+
+<div class="store-footer-actions">
+<span class="engine-tag">Game Maker</span>
+</div>
+
+</div>
+</section>
+
+<section class="game-listing">
+
+<div class="media-column">
+
+<div class="main-preview-viewport">
+<img id="main-preview-cat" src="../images/main_catcaveadventure_image.png">
+</div>
+
+<div class="thumbnail-strip">
+
+<div class="thumb-box">
+<img src="../images/2nd_catcaveadventure_image.png"
+onclick="document.getElementById('main-preview-cat').src=this.src">
+</div>
+
+<div class="thumb-box">
+<img src="../images/3rd_catcaveadventure_image.png"
+onclick="document.getElementById('main-preview-cat').src=this.src">
+</div>
+
+<div class="thumb-box">
+<img src="../images/4th_catCaveadventure__image.png"
+onclick="document.getElementById('main-preview-cat').src=this.src">
+</div>
+
+</div>
+</div>
+
+<div class="info-column">
+
+<div>
+<div class="game-header-meta">
+<h2 class="game-title">Cat Cave Adventures</h2>
+
+<div class="release-date">
+Sole Game Dev
+</div>
+</div>
+
+<p class="game-description">
+I built this game in GB Studio using the engine's interaction framework to implement movement, scene transitions, and NPC behaviors. I also programmed the dialogue systems and specific mini-game mechanics. I created all the visual assets using Aseprite and Procreate. Working within the technical limitations of a GameBoy engine was a big part of the process in creating this. I had to work with a strict amount of colors and a specific number of unique pixel blocks while designing the gameplay. Learning to navigate and overcome these constraints was a highlight in my development process. I created this game out of a specific interest in GameBoy aesthetics and hardware limitations. Given my focus on retro styles, I decided to create a short narrative involving a celestial cat. I wanted the audience to feel nostalgia for the handheld games of the past while enjoying the wacky aesthetics of the unique characters and dialogue I made. Working with GB Studio was a new experience that allowed me to add a unique tool to my technical arsenal as a developer and artist.
+</p>
+</div>
+
+<div class="store-footer-actions">
+<span class="engine-tag">GB Studio</span>
+</div>
+
+</div>
+</section>
+
+</div>
 
 </body>
 </html>
