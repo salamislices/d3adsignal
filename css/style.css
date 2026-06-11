@@ -66,17 +66,15 @@ body {
   pointer-events: none; 
   
   background: 
-    /* Left Side Dithered Black Bar Columns */
+   
     linear-gradient(90deg, #000000 40px, transparent 40px) left / 100% 100% no-repeat,
     linear-gradient(90deg, transparent 40px, #000000 40px, #000000 80px, transparent 80px) left / 100% 8px repeat-y,
     linear-gradient(90deg, transparent 80px, #000000 80px, #000000 120px, transparent 120px) left / 100% 16px repeat-y,
 
-    /* Right Side Dithered Black Bar Columns */
     linear-gradient(270deg, #000000 40px, transparent 40px) right / 100% 100% no-repeat,
     linear-gradient(270deg, transparent 40px, #000000 40px, #000000 80px, transparent 80px) right / 100% 8px repeat-y,
     linear-gradient(270deg, transparent 80px, #000000 80px, #000000 120px, transparent 120px) right / 100% 16px repeat-y,
 
-    /* Jitter Overlay Checkerboard Dither & CRT Scanlines */
     url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='4' height='4'%3E%3Cpath d='M0 0h2v2H0zm2 2h2v2H2z' fill='%23000' fill-opacity='.15'/%3E%3C/svg%3E") repeat,
     linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%), 
     linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.05));
